@@ -40,6 +40,12 @@
 #define BLINK_MODE_ON   "6"
 #define BLINK_MODE_OFF  "2"
 
+#define CHANNEL_BUTTONS 8
+#define CHANNEL_RED     16
+
+#define BRIGHTNESS_BUTTONS  3
+#define BRIGHTNESS_RED      8
+
 static pthread_once_t g_init = PTHREAD_ONCE_INIT;
 static pthread_mutex_t g_lock = PTHREAD_MUTEX_INITIALIZER;
 
@@ -173,11 +179,11 @@ static int set_breath_light_locked(int event_source,
     } else {
         active_states &= ~event_source;
 
-        write_int(BREATH_RED_OUTN, 8);
+        write_int(BREATH_RED_OUTN, CHANNEL_BUTTONS);
         write_str(BREATH_RED_FADE, "1 0 0");
         write_str(BREATH_RED_LED, BLINK_MODE_OFF);
 
-        write_int(BREATH_RED_OUTN, 16);
+        write_int(BREATH_RED_OUTN, CHANNEL_RED);
         write_str(BREATH_RED_FADE, "1 0 0");
         write_str(BREATH_RED_LED, BLINK_MODE_OFF);
 
@@ -215,20 +221,20 @@ static int set_breath_light_locked(int event_source,
 
     if ((active_states & BREATH_SOURCE_BUTTONS) == 0) {
         ALOGE(" Red led on");
-        write_int(BREATH_RED_OUTN, 16);
+        write_int(BREATH_RED_OUTN, CHANNEL_RED);
         write_str(BREATH_RED_FADE, "4 5 0");
         write_int(BREATH_RED_GRADE, brightness);
         write_str(BREATH_RED_LED, BLINK_MODE_ON);
     } else {
         ALOGE(" Button led on");
-        write_int(BREATH_RED_OUTN, 8);
+        write_int(BREATH_RED_OUTN, CHANNEL_BUTTONS);
         write_str(BREATH_RED_FADE, "1 0 0");
-        write_int(BREATH_RED_GRADE, 10);
+        write_int(BREATH_RED_GRADE, BRIGHTNESS_BUTTONS);
         write_str(BREATH_RED_LED, BLINK_MODE_ON);
 
-        write_int(BREATH_RED_OUTN, 16);
+        write_int(BREATH_RED_OUTN, CHANNEL_RED);
         write_str(BREATH_RED_FADE, "1 0 0");
-        write_int(BREATH_RED_GRADE, 10);
+        write_int(BREATH_RED_GRADE, BRIGHTNESS_RED);
         write_str(BREATH_RED_LED, BLINK_MODE_ON);
     }
 
