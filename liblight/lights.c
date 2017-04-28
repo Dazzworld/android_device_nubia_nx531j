@@ -190,10 +190,24 @@ read_str(char const* path, char *buffer, size_t size)
 static int
 rgb_to_brightness(struct light_state_t const* state)
 {
-    int color = state->color & 0x00ffffff;
-    return ((77 * ((color >> 16) & 0x00ff))
-        + (150 * ((color >> 8) & 0x00ff))
-        + (29 * (color & 0x00ff))) >> 8;
+    int color = state->color;
+
+    float alpha = (float) ((color >> 24) & 0xff) / 255;
+
+    int r = (color >> 16) & 0xff;
+    int g = (color >> 8) & 0xff;
+    int b = (color) & 0xff;
+
+    int brightness = r;
+    if (g > brightness) {
+        brightness = g;
+    } else if (b > brightness) {
+        brightness = b;
+    }
+
+    brightness = (int) ((float) brightness * alpha);
+
+    return brightness;
 }
 
 static int
