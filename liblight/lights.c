@@ -49,8 +49,6 @@ static struct light_state_t g_buttons;
 static struct light_state_t g_attention;
 
 static int g_ongoing = ONGOING_NONE;
-static int g_last = ONGOING_NONE;
-
 static int g_battery = BATTERY_UNKNOWN;
 
 /**
@@ -84,8 +82,14 @@ set_nubia_led_locked(struct light_device_t* dev,
 {
     int err;
 
-    int brightness, buttons;
+    int buttons;
     int mode;
+
+    char grade[16];
+    size_t grade_len = 0;
+
+    char fade[16];
+    size_t fade_len = 0;
 
     if (!dev) {
         return -1;
@@ -94,8 +98,7 @@ set_nubia_led_locked(struct light_device_t* dev,
     ALOGI("setting led %d: %08x, %d, %d", source,
         state->color, state->flashOnMS, state->flashOffMS);
 
-    brightness = rgb_to_brightness(state);
-    if (brightness > 0) {
+    if (rgb_to_brightness(state) > 0) {
         g_ongoing |= source;
         ALOGI("ongoing +: %d = %d", source, g_ongoing);
     } else {
@@ -103,53 +106,72 @@ set_nubia_led_locked(struct light_device_t* dev,
         ALOGI("ongoing -: %d = %d", source, g_ongoing);
     }
 
-    buttons = rgb_to_brightness(&g_buttons);
+    buttons = rgb_to_brightness(&g_buttons) / 20;
 
     /* set side buttons */
 
     write_int(NUBIA_CHANNEL_FILE, SILDE_CHANNEL);
-    if ((g_ongoing & ONGOING_BUTTONS) == 0) {
-        write_int(NUBIA_MODE_FILE, RGB_LED_MODE_OFF);
-    } else {
-        write_int(NUBIA_GRADE_FILE, buttons / 20);
+    if (g_ongoing & ONGOING_BUTTONS) {
+        write_int(NUBIA_GRADE_FILE, buttons);
         write_int(NUBIA_MODE_FILE, RGB_LED_MODE_CONSTANT_ON);
+    } else {
+        write_int(NUBIA_MODE_FILE, RGB_LED_MODE_OFF);
     }
 
     /* set middle ring */
 
-    if (g_ongoing == 0) {
-        if (g_battery == BATTERY_CHARGING) {
-            mode = RGB_LED_MODE_AUTO_BLINK;
-            brightness = BRIGHTNESS_BATTERY_CHARGING;
-        } else if (g_battery == BATTERY_FULL) {
-            mode = RGB_LED_MODE_CONSTANT_ON;
-            brightness = BRIGHTNESS_BATTERY_FULL;
-        } else {
-            mode = RGB_LED_MODE_OFF;
-        }
-    } else {
-        if (state->flashMode == LIGHT_FLASH_TIMED) {
-            mode = RGB_LED_MODE_AUTO_BLINK;
-        } else {
-            mode = RGB_LED_MODE_CONSTANT_ON;
-        }
-    }
-
-    // brightness is not always from buttons, sometimes it is 0
-    if ((g_ongoing & ONGOING_BUTTONS) != 0 && brightness < buttons) {
-        brightness = buttons;
-    }
-
-    if (g_battery == BATTERY_LOW) {
+    if (g_ongoing & ONGOING_NOTIFICATION) {
         mode = RGB_LED_MODE_AUTO_BLINK;
-        brightness = BRIGHTNESS_BATTERY_LOW;
+        grade_len = sprintf(grade, "%d %d\n",
+            buttons,
+            buttons + rgb_to_brightness(&g_notification) / 20);
+    }
+    else if (g_ongoing & ONGOING_ATTENTION) {
+        mode = RGB_LED_MODE_AUTO_BLINK;
+        grade_len = sprintf(grade, "%d %d\n",
+            buttons,
+            buttons + rgb_to_brightness(&g_attention) / 20);
+    }
+    else if (g_battery == BATTERY_CHARGING) {
+        mode = RGB_LED_MODE_AUTO_BLINK;
+        grade_len = sprintf(grade, "%d %d\n",
+            buttons + BRIGHTNESS_BATTERY_FULL / 20,
+            buttons + BRIGHTNESS_BATTERY_CHARGING / 20);
+    }
+    else if (g_battery == BATTERY_FULL) {
+        mode = RGB_LED_MODE_CONSTANT_ON;
+        grade_len = sprintf(grade, "%d\n",
+            buttons + BRIGHTNESS_BATTERY_FULL / 20);
+    }
+    else if (g_battery == BATTERY_LOW) {
+        mode = RGB_LED_MODE_AUTO_BLINK;
+        grade_len = sprintf(grade, "%d %d\n",
+            buttons, buttons + BRIGHTNESS_BATTERY_LOW / 20);
+    }
+    else if (g_ongoing & ONGOING_BUTTONS) {
+        mode = RGB_LED_MODE_CONSTANT_ON;
+        grade_len = sprintf(grade, "%d\n", buttons);
+    }
+    else {
+        mode = RGB_LED_MODE_OFF;
+    }
+
+    if (state->flashMode == LIGHT_FLASH_TIMED) {
+        fade_len = sprintf(fade, "%d %d %d\n",
+            1, state->flashOnMS / 400, state->flashOffMS / 400);
     }
 
     write_int(NUBIA_CHANNEL_FILE, MIDDLE_CHANNEL);
-    write_int(NUBIA_GRADE_FILE, brightness / 10);
-    write_int(NUBIA_MODE_FILE, mode);
 
-    g_last = g_ongoing;
+    if (grade_len > 0) {
+        write_str(NUBIA_GRADE_FILE, grade, grade_len);
+    }
+
+    if (fade_len > 0) {
+        write_str(NUBIA_FADE_FILE, fade, fade_len);
+    }
+
+    write_int(NUBIA_MODE_FILE, mode);
 
     return 0;
 }

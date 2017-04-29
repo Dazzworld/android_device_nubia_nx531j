@@ -24,6 +24,7 @@
 
 
 int write_int(char const* path, int value);
+int write_str(char const* path, char *buffer, size_t size);
 int read_str(char const* path, char *buffer, size_t size);
 
 int rgb_to_brightness(struct light_state_t const* state);

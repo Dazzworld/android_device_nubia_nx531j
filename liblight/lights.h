@@ -37,6 +37,9 @@
 #define NUBIA_GRADE_FILE \
         "/sys/class/leds/nubia_led/grade_parameter"
 
+#define NUBIA_FADE_FILE \
+        "/sys/class/leds/nubia_led/fade_parameter"
+
 #define NUBIA_MODE_FILE \
         "/sys/class/leds/nubia_led/blink_mode"
 

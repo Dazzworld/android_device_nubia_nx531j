@@ -50,6 +50,25 @@ int write_int(char const* path, int value)
     }
 }
 
+int write_str(char const* path, char *buffer, size_t size)
+{
+    int fd;
+    static int already_warned = 0;
+
+    fd = open(path, O_RDWR);
+    if (fd >= 0) {
+        int bytes = write(fd, buffer, size);
+        close(fd);
+        return bytes;
+    } else {
+        if (already_warned == 0) {
+            ALOGE("write_str failed to open %s\n", path);
+            already_warned = 1;
+        }
+        return -errno;
+    }
+}
+
 int read_str(char const* path, char *buffer, size_t size)
 {
     int fd;
