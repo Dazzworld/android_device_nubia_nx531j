@@ -58,11 +58,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.camera.hal1.packagelist=com.whatsapp,com.intsig.camscanner \
     persist.ts.postmakeup=false \
     persist.ts.rtmakeup=false \
     persist.camera.stats.test=5 \
     camera.disable_zsl_mode=1 \
     persist.camera.gyro.disable=0
+
 
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
