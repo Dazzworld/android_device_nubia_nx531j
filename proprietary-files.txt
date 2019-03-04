@@ -770,3 +770,7 @@ vendor/lib64/libtime_genoff.so|8f4c1f9ace6af463b241b130d6872b5d39cc7b2a
 
 # WiFi - from daisy - PKQ1.180917.001
 vendor/bin/cnss-daemon|badadcc672341e36228301b02c2bfaa36be09233
+
+# fingerprint
+lib64/hw/fingerprint.msm8996.so
+lib64/lib_fpc_tac_shared.so
