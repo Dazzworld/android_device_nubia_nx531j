@@ -177,9 +177,6 @@ PRODUCT_PACKAGES += \
     libqdMetaData.system \
     libtinyxml
 
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/calib.cfg:system/etc/calib.cfg
-
 # Doze mode
 PRODUCT_PACKAGES += \
     XiaomiDoze

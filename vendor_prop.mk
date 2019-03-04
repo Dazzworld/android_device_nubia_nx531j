@@ -71,12 +71,9 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.data.netmgrd.qos.enable=true \
     ro.use_data_netmgrd=true
 
-# Display (Qualcomm AD)
+# Display
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.qualcomm.cabl=0 \
-    ro.qcom.ad=1 \
-    ro.qcom.ad.calib.data=/system/etc/calib.cfg \
-    ro.qcom.ad.sensortype=2
 
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
