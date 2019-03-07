@@ -15,9 +15,9 @@
 # limitations under the License.
 #
 
-BOARD_VENDOR := xiaomi
+BOARD_VENDOR := nubia
 
-VENDOR_PATH := device/xiaomi/msm8996-common
+VENDOR_PATH := device/nubia/nx531j
 
 TARGET_SPECIFIC_HEADER_PATH := $(VENDOR_PATH)/include
 
@@ -50,7 +50,7 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_TAGS_OFFSET := 0x00000100
 BOARD_RAMDISK_OFFSET := 0x01000000
 TARGET_KERNEL_ARCH := arm64
-TARGET_KERNEL_SOURCE := kernel/xiaomi/msm8996
+TARGET_KERNEL_SOURCE := kernel/nubia/msm8996
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 
 # Platform
@@ -95,7 +95,6 @@ QCOM_BT_USE_BTNV := true
 
 # Camera
 BOARD_QTI_CAMERA_32BIT_ONLY := true
-TARGET_SUPPORT_HAL1 := false
 TARGET_USES_MEDIA_EXTENSIONS := true
 TARGET_USES_QTI_CAMERA_DEVICE := true
 USE_DEVICE_SPECIFIC_CAMERA := true
@@ -163,7 +162,6 @@ TARGET_USES_MKE2FS := true
 
 # Power
 TARGET_HAS_NO_WLAN_STATS := true
-TARGET_TAP_TO_WAKE_NODE := "/proc/touchpanel/double_tap_enable"
 TARGET_USES_INTERACTION_BOOST := true
 
 # QCOM
@@ -175,10 +173,6 @@ TARGET_RECOVERY_FSTAB := $(VENDOR_PATH)/rootdir/etc/fstab.qcom
 TARGET_RECOVERY_PIXEL_FORMAT := "RGBX_8888"
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-
-# Releasetools
-TARGET_RECOVERY_UPDATER_LIBS := librecovery_updater_xiaomi
-TARGET_RELEASETOOLS_EXTENSIONS := $(VENDOR_PATH)
 
 # RIL
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
@@ -211,4 +205,4 @@ WIFI_DRIVER_FW_PATH_P2P := "p2p"
 WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # Inherit from the proprietary version
--include vendor/xiaomi/msm8996-common/BoardConfigVendor.mk
+-include vendor/nubia/nx531j/BoardConfigVendor.mk

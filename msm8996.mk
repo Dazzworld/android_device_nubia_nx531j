@@ -18,7 +18,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
 
 # Get non-open-source specific aspects
-$(call inherit-product, vendor/xiaomi/msm8996-common/msm8996-common-vendor.mk)
+$(call inherit-product, vendor/nubia/nx531j/nx531j-vendor.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
@@ -146,10 +146,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     libcnefeatureconfig
 
-# Common config scripts
-PRODUCT_PACKAGES += \
-    init.panel.sh
-
 # Common init scripts
 PRODUCT_PACKAGES += \
     fstab.qcom \
@@ -157,6 +153,7 @@ PRODUCT_PACKAGES += \
     init.qcom.sh \
     init.qcom.power.rc \
     init.qcom.usb.rc \
+    init.target.rc \
     ueventd.qcom.rc
 
 # Display
@@ -179,7 +176,7 @@ PRODUCT_PACKAGES += \
 
 # Doze mode
 PRODUCT_PACKAGES += \
-    XiaomiDoze
+    NubiaDoze
 
 # DRM
 PRODUCT_PACKAGES += \
@@ -250,10 +247,6 @@ PRODUCT_PACKAGES += \
     android.hardware.keymaster@3.0-impl \
     android.hardware.keymaster@3.0-service
 
-# Lights
-PRODUCT_PACKAGES += \
-    android.hardware.light@2.0-service.xiaomi_8996
-
 # LiveDisplay
 PRODUCT_PACKAGES += \
     vendor.mokee.livedisplay@2.0-service-sdm
@@ -318,10 +311,6 @@ PRODUCT_PACKAGES += \
     rcs_service_aidl.xml \
     rcs_service_api \
     rcs_service_api.xml
-
-# Recovery
-PRODUCT_PACKAGES += \
-    librecovery_updater_xiaomi
 
 # RenderScript
 PRODUCT_PACKAGES += \
