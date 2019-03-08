@@ -57,8 +57,11 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
-    persist.camera.gyro.disable=0 \
-    persist.camera.imglib.fddsp=1
+    persist.ts.postmakeup=false \
+    persist.ts.rtmakeup=false \
+    persist.camera.stats.test=5 \
+    camera.disable_zsl_mode=1 \
+    persist.camera.gyro.disable=0
 
 # CNE
 PRODUCT_PROPERTY_OVERRIDES += \
