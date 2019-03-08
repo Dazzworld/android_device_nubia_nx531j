@@ -1,0 +1,241 @@
+# Copyright (c) 2013-2016, The Linux Foundation. All rights reserved.
+#
+# Redistribution and use in source and binary forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#     * Redistributions of source code must retain the above copyright
+#       notice, this list of conditions and the following disclaimer.
+#     * Redistributions in binary form must reproduce the above
+#       copyright notice, this list of conditions and the following
+#       disclaimer in the documentation and/or other materials provided
+#       with the distribution.
+#     * Neither the name of The Linux Foundation nor the names of its
+#       contributors may be used to endorse or promote products derived
+#       from this software without specific prior written permission.
+#
+# THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+# WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+# ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+# BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+# BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+# WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+# OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+# IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+#
+#
+
+on post-fs-data
+    mkdir /data/tp 0775 system system
+    symlink /sys/bus/i2c/devices/12-0020/ic_ver /data/tp/ic_ver
+    symlink /sys/bus/i2c/devices/12-0020/reset /data/tp/reset
+    symlink /sys/bus/i2c/devices/12-0020/ic_detect /data/tp/ic_detect
+    symlink /sys/bus/i2c/devices/12-0020/start_update /data/tp/start_update
+    chown system system /sys/bus/i2c/devices/12-0020/wake_gesture
+    symlink /sys/bus/i2c/devices/12-0020/wake_gesture /data/tp/easy_wakeup_gesture
+    chown system system /sys/bus/i2c/devices/12-0020/palm_sleep
+    symlink /sys/bus/i2c/devices/12-0020/palm_sleep /data/tp/easy_sleep_palm
+    write /sys/bus/i2c/devices/12-0020/start_update 1
+    chown system system /sys/kernel/lcd_enhance/colortmp
+
+on boot
+    write /proc/sys/kernel/sched_boost 1
+    write /sys/devices/soc/75ba000.i2c/i2c-12/12-0020/input/input0/update_fw 1
+
+    chown system system /sys/class/leds/nubia_led/brightness
+    chown system system /sys/class/leds/nubia_led/device/grpfreq
+    chown system system /sys/class/leds/nubia_led/device/grppwm
+    chown system system /sys/class/leds/nubia_led/device/blink
+    chown system system /sys/class/leds/red/brightness
+    chown system system /sys/class/leds/red/blink
+    chown system system /sys/class/leds/green/brightness
+    chown system system /sys/class/leds/blue/brightness
+    chown system system /sys/class/leds/red/device/grpfreq
+    chown system system /sys/class/leds/red/device/grppwm
+    chown system system /sys/class/leds/red/device/blink
+    chown system system /sys/class/timed_output/vibrator/enable
+    chown system system /sys/module/sco/parameters/disable_esco
+    chown system system /sys/kernel/ipv4/tcp_wmem_min
+    chown system system /sys/kernel/ipv4/tcp_wmem_def
+    chown system system /sys/kernel/ipv4/tcp_wmem_max
+    chown system system /sys/kernel/ipv4/tcp_rmem_min
+    chown system system /sys/kernel/ipv4/tcp_rmem_def
+    chown system system /sys/kernel/ipv4/tcp_rmem_max
+    chown system system /sys/class/leds/nubia_led/fade_parameter
+    chown system system /sys/class/leds/nubia_led/grade_parameter
+    chown system system /sys/class/leds/nubia_led/outn
+    chown system system /sys/class/leds/nubia_led/blink_mode
+    chown root radio /proc/cmdline
+
+    #Added BY ZTEMT
+    #add the sensor sysfs permission
+    #gesture
+    chown system system /sys/class/gesture/gesture/enable
+    chown system system /sys/class/gesture/gesture/gesture_offset_init
+    chown system system /sys/class/gesture/gesture/gesture_data_safe_range_max
+    chown system system /sys/class/gesture/gesture/gesture_data_safe_range_min
+    chown system system /sys/class/gesture/gesture/gesture_offset_cal
+    chown system system /sys/class/gesture/gesture/gesture_offset_cal_start
+    chown system system /sys/class/gesture/gesture/gesture_channel_data_max
+
+    chmod 0644 /sys/class/gesture/gesture/enable
+    chmod 0644 /sys/class/gesture/gesture/gesture_offset_init
+    chmod 0644 /sys/class/gesture/gesture/gesture_data_safe_range_max
+    chmod 0644 /sys/class/gesture/gesture/gesture_data_safe_range_min
+    chmod 0644 /sys/class/gesture/gesture/gesture_offset_cal
+    chmod 0644 /sys/class/gesture/gesture/gesture_offset_cal_start
+    chmod 0644 /sys/class/gesture/gesture/gesture_channel_data_max
+
+    #hall_device
+    chown system system /sys/class/hall_device/hall_device/enable
+    chmod 0644 /sys/class/hall_device/hall_device/enable
+    #fingerprint
+    mkdir /dev/fpcSocket 0770 system system
+    chmod -R 0777 /dev/fpcSocket
+    chown system system /sys/bus/platform/devices/1.fpc1020/irq
+    chown system system /sys/bus/platform/devices/1.fpc1020/wakeup_enable
+    #ir remote
+    chown system system /sys/class/ir_remote/ir_remote/enable
+    chmod 0644 /sys/class/ir_remote/ir_remote/enable
+    #smart key
+    chown system system /sys/class/pressure_device/pressure_device/enable_smart_key
+    chown system system /sys/class/pressure_device/pressure_device/sensitivity_attr
+    chown system system /sys/class/pressure_device/pressure_device/vlps_wakeup
+    chmod 0644 /sys/class/pressure_device/pressure_device/enable_smart_key
+    chmod 0644 /sys/class/pressure_device/pressure_device/sensitivity_attr
+    chmod 0644 /sys/class/pressure_device/pressure_device/vlps_wakeup
+    #proximity
+    chown system system /sys/class/proximity/proximity/enable
+    chown system system /sys/class/proximity/proximity/prox_uncover_max
+    chown system system /sys/class/proximity/proximity/reg
+    chown system system /sys/class/proximity/proximity/prox_value
+    chown system system /sys/class/proximity/proximity/dev_init
+    chown system system /sys/class/proximity/proximity/delay
+    chmod 0777 /persist/sensors
+    chown system system /sys/class/proximity/proximity/prox_manual_calibrate_threshold
+    chown system system /sys/class/proximity/proximity/prox_init
+    chown system system /sys/class/proximity/proximity/prox_threshold_init
+    chown system system /sys/class/proximity/proximity/prox_offset_init
+    chown system system /sys/class/proximity/proximity/prox_thres
+    chown system system /sys/class/proximity/proximity/chip_name
+    chown system system /sys/class/proximity/proximity/prox_threshold_cal_start
+    chown system system /sys/class/proximity/proximity/prox_offset_cal_start
+    chown system system /sys/class/proximity/proximity/prox_offset_cal
+    chown system system /sys/class/proximity/proximity/prox_data_safe_range_max
+    chown system system /sys/class/proximity/proximity/prox_data_safe_range_min
+    chown system system /sys/class/proximity/proximity/prox_calibrate
+    chown system system /sys/class/proximity/proximity/prox_calibrate_start
+    chown system system /sys/class/proximity/proximity/prox_calibrate_result
+    chown system system /sys/class/proximity/proximity/prox_data_max
+    chown system system /sys/class/proximity/proximity/prox_debug
+    chown system system /sys/class/proximity/proximity/prox_thres_max
+    chown system system /sys/class/proximity/proximity/prox_thres_min
+    chown system system /sys/class/proximity/proximity/prox_threshold_high
+    chown system system /sys/class/proximity/proximity/prox_threshold_low
+    chown system system /sys/class/proximity/proximity/prox_thres_param_high
+    chown system system /sys/class/proximity/proximity/prox_thres_param_low
+    chown system system /sys/class/proximity/proximity/prox_pluse_length
+    chown system system /sys/class/proximity/proximity/prox_thres_pulse_count
+    chown system system /sys/class/proximity/proximity/prox_wakelock
+    chown system system /sys/class/proximity/proximity/prox_phone_is_sleep
+    chown system system /sys/class/proximity/proximity/prox_irq
+    chown system system /sys/class/proximity/proximity/prox_offset_cal_verify
+    chown system system /sys/class/proximity/proximity/prox_calibrate_verify
+
+
+    chmod 0644 /sys/class/proximity/proximity/reg
+    chmod 0644 /sys/class/proximity/proximity/prox_value
+    chmod 0644 /sys/class/proximity/proximity/prox_offset_cal
+    chmod 0644 /sys/class/proximity/proximity/dev_init
+    chmod 0644 /sys/class/proximity/proximity/prox_manual_calibrate_threshold
+    chmod 0644 /sys/class/proximity/proximity/chip_name
+    chmod 0644 /sys/class/proximity/proximity/prox_threshold_cal_start
+    chmod 0644 /sys/class/proximity/proximity/prox_offset_cal_start
+    chmod 0644 /sys/class/proximity/proximity/prox_data_safe_range_max
+    chmod 0644 /sys/class/proximity/proximity/prox_data_safe_range_min
+    chmod 0644 /sys/class/proximity/proximity/prox_calibrate_start
+    chmod 0644 /sys/class/proximity/proximity/prox_calibrate_result
+    chmod 0644 /sys/class/proximity/proximity/prox_debug
+    chmod 0644 /sys/class/proximity/proximity/prox_thres_max
+    chmod 0644 /sys/class/proximity/proximity/prox_thres_min
+    chmod 0644 /sys/class/proximity/proximity/prox_threshold_high
+    chmod 0644 /sys/class/proximity/proximity/prox_threshold_low
+    chmod 0644 /sys/class/proximity/proximity/prox_pluse_length
+    chmod 0644 /sys/class/proximity/proximity/prox_thres_pulse_count
+    chmod 0644 /sys/class/proximity/proximity/prox_irq
+    chmod 0644 /sys/class/proximity/proximity/prox_offset_cal_verify
+    chmod 0644 /sys/class/proximity/proximity/prox_calibrate_verify
+
+    #light
+    chown system system /sys/class/light/light/enable
+    chown system system /sys/class/light/light/tp_cfg
+    chown system system /sys/class/light/light/fac_calibrate
+    chown system system /sys/class/light/light/calibrate
+    chown system system /sys/class/light/light/chip_name
+    chown system system /sys/class/light/light/light_value
+    chown system system /sys/class/light/light/delay
+    chown system system /sys/class/light/light/red_data
+    chown system system /sys/class/light/light/green_data
+    chown system system /sys/class/light/light/blue_data
+    chown system system /sys/class/light/light/clear_data
+    chown system system /sys/class/light/light/dump_reg
+    chown system system /sys/class/light/light/module_tpcolor
+    chown system system /sys/class/light/light/dump_tp_parameter
+    chown system system /sys/class/light/light/dev_init
+
+    chmod 0644 system system /sys/class/light/light/enable
+    chmod 0644 system system /sys/class/light/light/tp_cfg
+    chmod 0644 system system /sys/class/light/light/fac_calibrate
+    chmod 0644 system system /sys/class/light/light/calibrate
+    chmod 0644 system system /sys/class/light/light/chip_name
+    chmod 0644 system system /sys/class/light/light/light_value
+    chmod 0644 system system /sys/class/light/light/delay
+    chmod 0644 system system /sys/class/light/light/red_data
+    chmod 0644 system system /sys/class/light/light/blue_data
+    chmod 0644 system system /sys/class/light/light/green_data
+    chmod 0644 system system /sys/class/light/light/clear_data
+    chmod 0644 system system /sys/class/light/light/dump_reg
+    chmod 0644 system system /sys/class/light/light/module_tpcolor
+    chmod 0644 system system /sys/class/light/light/dump_tp_parameter
+    chown 0644 system system /sys/class/light/light/dev_init
+
+    #temperature
+    chown system system /sys/class/temperature/temperature/enable
+    chown system system /sys/class/temperature/temperature/temperature_poll_time
+
+    chmod 0644 system /sys/class/temperature/temperature/enable
+    chmod 0644 /sys/class/temperature/temperature/temperature_data
+
+
+    #humidity
+    chown system system /sys/class/humidity/humidity/enable
+    chown system system /sys/class/humidity/humidity/humidity_poll_time
+
+    chmod 0644 system /sys/class/humidity/humidity/enable
+    chmod 0644 /sys/class/humidity/humidity/humidity_data
+
+    #sensor_common
+    chown system system /sys/class/sensor/temp_humidity/raw_humidity
+    chown system system /sys/class/sensor/temp_humidity/raw_temp
+
+    chown system system /sys/bus/platform/devices/1.fpc1020/irq
+    chown system system /sys/bus/platform/devices/1.fpc1020/wakeup_enable
+
+    chown system system /sys/kernel/lcd_enhance/cabc
+    # ADDED BY ZTEMT  END
+    # add for ndt force-key by nubia
+    chmod 666 dev/i2c-8
+    # add end
+
+on property:sys.boot_mode=ffbm
+    write -p /dev/block /dev/block/bootdevice/by-name/misc "ffbm-01"
+
+on property:sys.boot_mode=normal
+    write -p /dev/block /dev/block/bootdevice/by-name/misc "normal"
+
+on property:sys.boot_mode=production
+    write -p /dev/block /dev/block/bootdevice/by-name/misc "production-01"
+
+on property:sys.boot_mode=fullandroid
+    write -p /dev/block /dev/block/bootdevice/by-name/misc "full_android-"
