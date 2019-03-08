@@ -577,12 +577,6 @@ vendor/lib/hw/sound_trigger.primary.msm8996.so
 vendor/lib/libadpcmdec.so
 vendor/lib/libsmwrapper.so
 
-# Machine learning
--vendor/etc/lm/ReferenceFeature.xml
-vendor/lib64/liblearningmodule.so
-vendor/lib64/libmeters.so
-vendor/lib64/libreffeature.so
-
 # Media - from daisy - PKQ1.180917.001
 -vendor/lib64/libgpustats.so|35eaab728b21fe7cd33b821bf5cf13ea1117cd90
 -vendor/lib/libgpustats.so|83d8856717923ab389aecf17445e33fc21b90afc

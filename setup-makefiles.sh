@@ -41,7 +41,7 @@ fi
 . "$HELPER"
 
 # Initialize the helper for common
-setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT" true
+setup_vendor "$DEVICE" "$VENDOR" "$MK_ROOT" false
 
 # Copyright headers and guards
 write_headers
