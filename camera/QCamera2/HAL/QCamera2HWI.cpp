@@ -5765,7 +5765,6 @@ int32_t QCamera2HardwareInterface::processASDUpdate(
         return UNKNOWN_ERROR;
     }
 
-#ifndef VANILLA_HAL
     pASDData[0] = CAMERA_META_DATA_ASD;
     pASDData[1] = (int)data_len;
     pASDData[2] = scene;

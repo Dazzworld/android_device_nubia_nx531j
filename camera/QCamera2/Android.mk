@@ -37,7 +37,6 @@ LOCAL_SRC_FILES += \
         HAL/QCameraMuxer.cpp \
         HAL/QCameraMem.cpp \
         HAL/QCameraStateMachine.cpp \
-        util/QCameraDisplay.cpp \
         HAL/QCameraChannel.cpp \
         HAL/QCameraStream.cpp \
         HAL/QCameraPostProc.cpp \
@@ -61,7 +60,7 @@ ifeq ($(TARGET_USES_MEDIA_EXTENSIONS), true)
 LOCAL_CFLAGS += -DUSE_MEDIA_EXTENSIONS
 endif
 
-LOCAL_CFLAGS += -std=c++11 -std=gnu++0x
+LOCAL_CFLAGS += -std=c++11 -std=gnu++0x -Wno-c++14-extensions
 #HAL 1.0 Flags
 LOCAL_CFLAGS += -DDEFAULT_DENOISE_MODE_ON -DHAL3 -DQCAMERA_REDEFINE_LOG
 

@@ -34,7 +34,7 @@
 #include <pthread.h>
 #include <utils/KeyedVector.h>
 #include <utils/List.h>
-#include "CameraMetadata.h".
+#include "CameraMetadata.h"
 
 // Camera dependencies
 #include "hardware/camera3.h"
