@@ -17,6 +17,8 @@
 
 $(call inherit-product, $(SRC_TARGET_DIR)/product/product_launched_with_m.mk)
 
+$(call inherit-product, build/target/product/verity.mk)
+
 # Get non-open-source specific aspects
 $(call inherit-product, vendor/nubia/nx531j/nx531j-vendor.mk)
 
@@ -352,8 +354,8 @@ PRODUCT_PACKAGES += \
     android.hardware.usb@1.0-service.basic
 
 # VNDK
-PRODUCT_PACKAGES += \
-    vndk-sp
+#PRODUCT_PACKAGES += \
+#    vndk-sp
 
 # Vibrator
 PRODUCT_PACKAGES += \
