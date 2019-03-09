@@ -161,6 +161,11 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/bt_firmware:/bt_firmware
 TARGET_USES_MKE2FS := true
 
+# Legacy blob support
+TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
+    /system/bin/cameraserver=23 \
+    /system/vendor/bin/mm-qcamera-daemon=23
+
 # Power
 TARGET_HAS_NO_WLAN_STATS := true
 TARGET_USES_INTERACTION_BOOST := true
