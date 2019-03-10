@@ -248,6 +248,8 @@ vendor/lib/libmmcamera_sony_imx179_eeprom.so
 vendor/lib/libmmcamera_sony_imx298_ois_eeprom.so
 
 # Camera Sensors
+vendor/lib/libmmcamera_imx179_4lane.so
+vendor/lib/libmmcamera_imx179.so
 vendor/lib/libmmcamera_imx298_ois.so
 vendor/lib/libSonyIMX298PdafLibrary.so
 vendor/lib/libois_lc898122.so
@@ -782,7 +784,7 @@ vendor/lib64/hw/fingerprint.msm8996.so
 vendor/lib64/lib_fpc_tac_shared.so
 
 # NFC firmware
-vendor/firmware/libpn548ad_fw.so
+vendor/firmware/libpn548ad_fw.so:vendor/lib/libpn548ad_fw.so
 
 # Other firmware
 vendor/firmware/nubia_tp_jdi_fw.img
