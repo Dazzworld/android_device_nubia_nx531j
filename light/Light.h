@@ -1,8 +1,5 @@
 /*
- * Copyright (C) 2008 The Android Open Source Project
- * Copyright (C) 2014 The Linux Foundation. All rights reserved.
- * Copyright (C) 2016 The CyanogenMod Project
- * Copyright (C) 2017 The MoKee Open Source Project
+ * Copyright (C) 2018 The LineageOS Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,9 +14,15 @@
  * limitations under the License.
  */
 
-#ifndef NX531J_LIGHTS_IMPL_H
-#define NX531J_LIGHTS_IMPL_H
+#ifndef ANDROID_HARDWARE_LIGHT_V2_0_LIGHT_H
+#define ANDROID_HARDWARE_LIGHT_V2_0_LIGHT_H
 
+#include <android/hardware/light/2.0/ILight.h>
+#include <hardware/lights.h>
+#include <hidl/Status.h>
+#include <map>
+#include <mutex>
+#include <vector>
 
 /**
  * led defs
@@ -78,5 +81,57 @@ enum battery_status {
 #define BRIGHTNESS_BATTERY_CHARGING     200
 #define BRIGHTNESS_BATTERY_FULL         100
 
+#define BATTERY_STATUS_FILE \
+        "/sys/class/power_supply/battery/status"
 
-#endif  // NX531J_LIGHTS_IMPL_H
+#define BATTERY_STATUS_DISCHARGING  "Discharging"
+#define BATTERY_STATUS_NOT_CHARGING "Not charging"
+#define BATTERY_STATUS_CHARGING     "Charging"
+
+
+static int g_ongoing = ONGOING_NONE;
+static int g_battery = BATTERY_UNKNOWN;
+
+using ::android::hardware::Return;
+using ::android::hardware::Void;
+using ::android::hardware::light::V2_0::Flash;
+using ::android::hardware::light::V2_0::ILight;
+using ::android::hardware::light::V2_0::LightState;
+using ::android::hardware::light::V2_0::Status;
+using ::android::hardware::light::V2_0::Type;
+
+typedef void (*LightStateHandler)(const LightState&);
+
+struct LightBackend {
+    Type type;
+    LightState state;
+    LightStateHandler handler;
+
+    LightBackend(Type type, LightStateHandler handler) : type(type), handler(handler) {
+        this->state.color = 0xff000000;
+    }
+};
+
+
+namespace android {
+namespace hardware {
+namespace light {
+namespace V2_0 {
+namespace implementation {
+
+class Light : public ILight {
+  public:
+    Return<Status> setLight(Type type, const LightState& state) override;
+    Return<void> getSupportedTypes(getSupportedTypes_cb _hidl_cb) override;
+
+  private:
+    std::mutex globalLock;
+};
+
+}  // namespace implementation
+}  // namespace V2_0
+}  // namespace light
+}  // namespace hardware
+}  // namespace android
+
+#endif  // ANDROID_HARDWARE_LIGHT_V2_0_LIGHT_H
