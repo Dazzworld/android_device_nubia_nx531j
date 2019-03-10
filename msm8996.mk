@@ -357,6 +357,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light@2.0-service.nx531j
 
+# Biometrics
+PRODUCT_PACKAGES += \
+    android.hardware.biometrics.fingerprint@2.0-service.nx531j
+
 # VNDK
 #PRODUCT_PACKAGES += \
 #    vndk-sp
