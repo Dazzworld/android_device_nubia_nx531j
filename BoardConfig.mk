@@ -168,6 +168,7 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
     /system/vendor/bin/mm-qcamera-daemon=23
 
 # Power
+TARGET_TAP_TO_WAKE_NODE := "/sys/bus/i2c/devices/12-0020/wake_gesture"
 TARGET_HAS_NO_WLAN_STATS := true
 TARGET_USES_INTERACTION_BOOST := true
 
