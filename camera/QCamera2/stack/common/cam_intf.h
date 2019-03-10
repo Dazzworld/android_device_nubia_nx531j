@@ -426,7 +426,7 @@ typedef struct{
     /* Count is K/4 */
     uint8_t optical_black_region_count;
 
-    volatile char         nubia_reserved[104];
+    volatile char         nubia_reserved[108];
 } cam_capability_t;
 
 typedef enum {
