@@ -225,6 +225,11 @@
 /sys/devices/virtual/input/input*                   poll           0660    input    system
 /sys/devices/virtual/input/input*                   pollrate_ms    0660    input    system
 
+# nubia add start
+# goodix fingerprint device point
+/dev/fpc		  0660   system      system
+# nubia add end
+
 # laser sensor access
 /sys/devices/virtual/input/input*                   enable_ps_sensor 0660  system   system
 /sys/devices/virtual/input/input*                   set_delay_ms     0660  system   system
