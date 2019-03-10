@@ -372,11 +372,8 @@ service vendor.dataqti /vendor/bin/qti
 
 service vendor.sensors /vendor/bin/sensors.qcom
     class core
-    user system
-    group system
-    # Grants the ability for this daemon to bind IPC router ports so it can
-    # register QMI services
-    capabilities NET_BIND_SERVICE
+    user root
+    group root
     writepid /dev/cpuset/system-background/tasks
 
 on property:ro.vendor.use_data_netmgrd=false
