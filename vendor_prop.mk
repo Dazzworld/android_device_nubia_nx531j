@@ -151,6 +151,12 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.radio.rat_on=combine \
     persist.vendor.radio.sib16_support=1
 
+#mbn ota config
+PRODUCT_PROPERTY_OVERRIDES += \
+    persist.vendor.radio.hw_mbn_update=0 \
+    persist.vendor.radio.sw_mbn_update=0 \
+    persist.vendor.radio.start_ota_daemon=1
+
 # RmNet Data
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.rmnet.data.enable=true \

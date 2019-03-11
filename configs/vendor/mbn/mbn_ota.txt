@@ -1,0 +1,4 @@
+mcfg_sw/generic/nubia/cmcc/commerci/openmkt/mcfg_sw.mbn
+mcfg_sw/generic/nubia/ct/commerci/openmkt/mcfg_sw.mbn
+mcfg_sw/generic/nubia/cu/commerci/openmkt/mcfg_sw.mbn
+mcfg_sw/generic/nubia/row/commerci/openmkt/mcfg_sw.mbn

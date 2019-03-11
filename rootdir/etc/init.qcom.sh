@@ -30,28 +30,16 @@
 chown -LR system.system /proc/buttons
 chown -LR system.system /proc/touchpanel
 
-#
-# Make modem config folder and copy firmware config to that folder for RIL
-#
-if [ -f /data/vendor/radio/ver_info.txt ]; then
-    prev_version_info=`cat /data/vendor/radio/ver_info.txt`
-else
-    prev_version_info=""
+chmod g+w -R /data/vendor/radio/modem_config/*
+rm -rf /data/vendor/radio/modem_config/*
+cp -rf /system/vendor/mbn/* /data/vendor/radio/modem_config/
+chown -hR radio.root /data/vendor/radio/modem_config/*
+if [ -f /system/vendor/mbn/mbn_ota.txt ] && [ ! -f /data/vendor/radio/modem_config/mbn_ota.txt ]; then
+    cp /system/vendor/mbn/mbn_ota.txt /data/vendor/radio/modem_config/
+    chown radio.root /data/vendor/radio/modem_config/mbn_ota.txt
 fi
 
-cur_version_info=`cat /vendor/firmware_mnt/verinfo/ver_info.txt`
-if [ ! -f /vendor/firmware_mnt/verinfo/ver_info.txt -o "$prev_version_info" != "$cur_version_info" ]; then
-    # add W for group recursively before delete
-    chmod g+w -R /data/vendor/modem_config/*
-    rm -rf /data/vendor/modem_config/*
-    # preserve the read only mode for all subdir and files
-    cp --preserve=m -dr /vendor/firmware_mnt/image/modem_pr/mcfg/configs/* /data/vendor/modem_config
-    cp --preserve=m -d /vendor/firmware_mnt/verinfo/ver_info.txt /data/vendor/modem_config/
-    cp --preserve=m -d /vendor/firmware_mnt/image/modem_pr/mbn_ota.txt /data/vendor/modem_config/
-    # the group must be root, otherwise this script could not add "W" for group recursively
-    chown -hR radio.root /data/vendor/modem_config/*
-fi
-chmod g-w /data/vendor/modem_config
+chmod g-w /data/vendor/radio/modem_config
 setprop ro.vendor.ril.mbn_copy_completed 1
 
 # Check build variant for printk logging
