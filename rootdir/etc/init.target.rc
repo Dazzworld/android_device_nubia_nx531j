@@ -36,6 +36,10 @@ on post-fs-data
     symlink /sys/bus/i2c/devices/12-0020/wake_gesture /data/tp/easy_wakeup_gesture
     chown system system /sys/bus/i2c/devices/12-0020/palm_sleep
     symlink /sys/bus/i2c/devices/12-0020/palm_sleep /data/tp/easy_sleep_palm
+    chown system system /sys/bus/i2c/devices/12-0020/0dbutton
+    symlink /sys/bus/i2c/devices/12-0020/0dbutton /data/tp/keypad_enable
+    chown system system /sys/bus/i2c/devices/12-0020/swap_buttons
+    symlink /sys/bus/i2c/devices/12-0020/swap_buttons /data/tp/swap_buttons
     write /sys/bus/i2c/devices/12-0020/start_update 1
     chown system system /sys/kernel/lcd_enhance/colortmp
 
