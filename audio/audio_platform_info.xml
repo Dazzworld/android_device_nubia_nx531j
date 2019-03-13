@@ -57,5 +57,8 @@
         <device name="SND_DEVICE_OUT_VOICE_TTY_FULL_HEADPHONES" backend="headphones" interface="SLIMBUS_6_RX"/>
         <device name="SND_DEVICE_OUT_VOICE_TTY_VCO_HEADPHONES" backend="headphones" interface="SLIMBUS_6_RX"/>
     </backend_names>
+    <acdb_metainfo_key>
+        <param name="dolby" value="273"/>
+    </acdb_metainfo_key>
 </audio_platform_info>
 

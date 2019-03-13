@@ -44,10 +44,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.voice.path.for.pcm.voip=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    audio.effect.name=dolby \
-    audio.dolby.ds2.enabled=true \
-    dmid=3067269873 \
-    audio.ds1.metainfo.key=273
+    vendor.audio.dolby.ds2.enabled=true
+    vendor.audio.dmid=3067269873
 
 # Bluetooth
 PRODUCT_PROPERTY_OVERRIDES += \
