@@ -243,3 +243,10 @@ on property:sys.boot_mode=production
 
 on property:sys.boot_mode=fullandroid
     write -p /dev/block /dev/block/bootdevice/by-name/misc "full_android-"
+
+on property:persist.gesture.swapbuttons=*
+    write /sys/bus/i2c/devices/12-0020/swap_buttons ${persist.gesture.swapbuttons}
+
+on property:persist.gesture.palmsleep=*
+    write /sys/bus/i2c/devices/12-0020/palm_sleep ${persist.gesture.palmsleep}
+
