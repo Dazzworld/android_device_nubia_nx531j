@@ -354,6 +354,10 @@ PRODUCT_BOOT_JARS += \
 PRODUCT_PACKAGES += \
     textclassifier.bundle1
 
+# Touch HAL
+PRODUCT_PACKAGES += \
+    vendor.mokee.touch@1.0-service.nx531j
+
 # Trust HAL
 PRODUCT_PACKAGES += \
     vendor.mokee.trust@1.0-service
@@ -396,7 +400,6 @@ PRODUCT_PACKAGES += \
     libQWiFiSoftApCfg \
     libwpa_client \
     hostapd \
-    readfem \
     readmac \
     wpa_supplicant \
     wpa_supplicant.conf
