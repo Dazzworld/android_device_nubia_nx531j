@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<device name="Android">
+    <item name="none">0</item>
+    <item name="screen.on">85</item>
+    <item name="screen.full">290</item>
+    <item name="bluetooth.active">8</item>
+    <item name="bluetooth.on">0.1</item>
+    <item name="wifi.on">1</item>
+    <item name="wifi.active">61</item>
+    <item name="wifi.scan">100</item>
+    <item name="dsp.audio">78</item>
+    <item name="dsp.video">58</item>
+    <item name="camera.flashlight">300</item>
+    <item name="camera.avg">550</item>
+    <item name="radio.active">159</item>
+    <item name="radio.scanning">4</item>
+    <item name="gps.on">46</item>
+    <array name="radio.on">
+        <value>2</value>
+        <value>1</value>
+    </array>
+    <array name="gpu.speeds">
+        <value>624000</value>
+        <value>560000</value>
+        <value>510000</value>
+        <value>401800</value>
+        <value>315000</value>
+        <value>214000</value>
+        <value>133000</value>
+    </array>
+    <array name="gpu.active">
+        <value>573</value>
+        <value>503</value>
+        <value>408</value>
+        <value>313</value>
+        <value>172</value>
+        <value>151</value>
+        <value>130</value>
+    </array>
+    <item name="cpu.idle">4</item>
+    <item name="cpu.awake">25</item>
+    <array name="cpu.clusters.cores">
+        <value>2</value>
+        <value>2</value>
+    </array>
+    <array name="cpu.core_speeds.cluster0">
+        <value>307200</value>
+        <value>422400</value>
+        <value>480000</value>
+        <value>556800</value>
+        <value>652800</value>
+        <value>729600</value>
+        <value>844800</value>
+        <value>960000</value>
+        <value>1036800</value>
+        <value>1113600</value>
+        <value>1190400</value>
+        <value>1228800</value>
+        <value>1324800</value>
+        <value>1401600</value>
+        <value>1478400</value>
+        <value>1593600</value>
+    </array>
+    <array name="cpu.core_power.cluster0">
+        <value>71</value>
+        <value>80</value>
+        <value>85</value>
+        <value>92</value>
+        <value>103</value>
+        <value>113</value>
+        <value>124</value>
+        <value>154</value>
+        <value>168</value>
+        <value>187</value>
+        <value>201</value>
+        <value>217</value>
+        <value>248</value>
+        <value>273</value>
+        <value>295</value>
+        <value>347</value>
+    </array>
+    <array name="cpu.core_speeds.cluster1">
+        <value>307200</value>
+        <value>403200</value>
+        <value>480000</value>
+        <value>556800</value>
+        <value>652800</value>
+        <value>729600</value>
+        <value>806400</value>
+        <value>883200</value>
+        <value>940800</value>
+        <value>1036800</value>
+        <value>1113600</value>
+        <value>1190400</value>
+        <value>1248000</value>
+        <value>1324800</value>
+        <value>1401600</value>
+        <value>1478400</value>
+        <value>1555200</value>
+        <value>1632000</value>
+        <value>1708800</value>
+        <value>1785600</value>
+        <value>1824000</value>
+        <value>1920000</value>
+        <value>1996800</value>
+        <value>2073600</value>
+        <value>2150400</value>
+    </array>
+    <array name="cpu.core_power.cluster1">
+        <value>79</value>
+        <value>89</value>
+        <value>97</value>
+        <value>105</value>
+        <value>114</value>
+        <value>124</value>
+        <value>135</value>
+        <value>150</value>
+        <value>156</value>
+        <value>176</value>
+        <value>190</value>
+        <value>210</value>
+        <value>232</value>
+        <value>243</value>
+        <value>260</value>
+        <value>289</value>
+        <value>301</value>
+        <value>318</value>
+        <value>353</value>
+        <value>398</value>
+        <value>420</value>
+        <value>471</value>
+        <value>526</value>
+        <value>569</value>
+        <value>622</value>
+    </array>
+    <item name="battery.capacity">4000</item>
+    <array name="wifi.batchedscan">
+        <value>.0002</value>
+        <value>.002</value>
+        <value>.02</value>
+        <value>.2</value>
+        <value>2</value>
+    </array>
+</device>
