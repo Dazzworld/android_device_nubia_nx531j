@@ -16,7 +16,7 @@
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
-    af.fast_track_multiplier=1 \
+    af.fast_track_multiplier=2 \
     audio.deep_buffer.media=true \
     audio.offload.min.duration.secs=15 \
     audio.offload.video=true \
@@ -26,7 +26,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.vendor.bt.enable.splita2dp=false \
     ro.config.media_vol_steps=25 \
     ro.config.vc_call_vol_steps=7 \
-    ro.vendor.audio.sdk.fluencetype=fluence \
+    ro.vendor.audio.sdk.fluencetype=none \
     ro.vendor.audio.sdk.ssr=false \
     vendor.audio.dolby.ds2.enabled=true \
     vendor.audio.dolby.ds2.hardbypass=true \
@@ -44,7 +44,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     vendor.voice.path.for.pcm.voip=true
 
 PRODUCT_PROPERTY_OVERRIDES += \
-    vendor.audio.dolby.ds2.enabled=true
     vendor.audio.dmid=3067269873
 
 # Bluetooth
