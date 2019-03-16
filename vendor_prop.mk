@@ -16,6 +16,7 @@
 
 # Audio
 PRODUCT_PROPERTY_OVERRIDES += \
+    ro.af.client_heap_size_kbyte=7168 \
     af.fast_track_multiplier=2 \
     audio.deep_buffer.media=true \
     audio.offload.min.duration.secs=15 \
