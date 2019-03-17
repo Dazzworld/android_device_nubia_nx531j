@@ -474,6 +474,11 @@ on property:init.svc.per_mgr=running
 on property:sys.shutdown.requested=*
     stop per_proxy
 
+service charger /charger
+    class charger
+    group system graphics
+    seclabel u:r:charger:s0
+
 service readfem /vendor/bin/readfem
     class main
     user root
