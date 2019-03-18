@@ -22,13 +22,14 @@ $(call inherit-product, build/target/product/verity.mk)
 # Get non-open-source specific aspects
 $(call inherit-product, vendor/nubia/nx531j/nx531j-vendor.mk)
 
+# Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
     dalvik.vm.heapstartsize=8m \
-    dalvik.vm.heapgrowthlimit=384m \
-    dalvik.vm.heapsize=1024m \
+    dalvik.vm.heapgrowthlimit=288m \
+    dalvik.vm.heapsize=768m \
     dalvik.vm.heaptargetutilization=0.75 \
-    dalvik.vm.heapminfree=4m \
-    dalvik.vm.heapmaxfree=16m
+    dalvik.vm.heapminfree=2m \
+    dalvik.vm.heapmaxfree=8m
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
