@@ -20,14 +20,6 @@ vendor/etc/acdbdata/MTP/MTP_Hdmi_cal.acdb
 vendor/etc/acdbdata/MTP/MTP_Headset_cal.acdb
 vendor/etc/acdbdata/MTP/MTP_Speaker_cal.acdb
 
-# Dobly dap
-vendor/lib/soundfx/libswdap.so
-vendor/lib/soundfx/libhwdap.so
-vendor/lib/libhwdaphal.so
-vendor/lib/libdlbdapstorage.so
-vendor/lib/libdlbmemoryservice.so
-vendor/etc/dolby/dax-default.xml
-
 # ADSP modules
 vendor/lib/rfsa/adsp/libadsp_fd_skel.so
 vendor/lib/rfsa/adsp/libadsp_hvx_add_constant.so
