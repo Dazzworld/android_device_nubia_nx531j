@@ -11,7 +11,7 @@ vendor/lib/libadsp_hvx_stub.so
 vendor/lib/libfastcvadsp_stub.so
 vendor/lib/libfastcvopt.so
 
-# ACDB
+# ACDB - from z2_row
 vendor/etc/acdbdata/MTP/MTP_Bluetooth_cal.acdb
 vendor/etc/acdbdata/MTP/MTP_General_cal.acdb
 vendor/etc/acdbdata/MTP/MTP_Global_cal.acdb
