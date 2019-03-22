@@ -160,6 +160,12 @@ service power-sh /vendor/bin/init.power.sh
     disabled
     oneshot
 
+service energy-awareness /vendor/bin/energy-awareness
+    class main
+    user root
+    group system
+    oneshot
+
 service vendor.perfd /vendor/bin/perfd
    class main
    user root
