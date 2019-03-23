@@ -59,6 +59,10 @@
 #define RPM_SYSTEM_STAT "/d/system_stats"
 #endif
 
+#ifndef TAP_TO_WAKE_NODE
+#define TAP_TO_WAKE_NODE "/data/tp/easy_wakeup_gesture"
+#endif
+
 #define LINE_SIZE 128
 
 const char *rpm_stat_params[MAX_RPM_PARAMS] = {
@@ -662,6 +666,15 @@ void power_set_interactive(int on)
     saved_interactive_mode = !!on;
 }
 
+void set_feature(feature_t feature, int state) {
+    switch (feature) {
+        case POWER_FEATURE_DOUBLE_TAP_TO_WAKE:
+            sysfs_write(TAP_TO_WAKE_NODE, state ? "1" : "0");
+            break;
+        default:
+            break;
+    }
+}
 
 static int parse_stats(const char **params, size_t params_size,
                        uint64_t *list, FILE *fp) {

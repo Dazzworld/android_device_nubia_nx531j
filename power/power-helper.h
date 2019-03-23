@@ -75,6 +75,7 @@ void power_init(void);
 void power_hint(power_hint_t hint, void *data);
 void power_set_interactive(int on);
 int extract_platform_stats(uint64_t *list);
+void set_feature(feature_t feature, int state);
 
 #ifdef __cplusplus
 }
