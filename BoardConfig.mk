@@ -162,11 +162,6 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/bt_firmware:/bt_firmware
 TARGET_USES_MKE2FS := true
 
-# Legacy blob support
-TARGET_PROCESS_SDK_VERSION_OVERRIDE += \
-    /system/bin/cameraserver=23 \
-    /system/vendor/bin/mm-qcamera-daemon=23
-
 # Power
 TARGET_TAP_TO_WAKE_NODE := "/sys/bus/i2c/devices/12-0020/wake_gesture"
 TARGET_HAS_NO_WLAN_STATS := true
