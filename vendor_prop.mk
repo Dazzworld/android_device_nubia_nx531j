@@ -58,6 +58,7 @@ PRODUCT_PROPERTY_OVERRIDES += \
 
 # Camera
 PRODUCT_PROPERTY_OVERRIDES += \
+    vendor.camera.aux.packagelist=com.android.camera,org.lineageos.snap,com.google.android.GoogleCameraTele \
     vendor.camera.hal1.packagelist=com.whatsapp,com.intsig.camscanner \
     persist.ts.postmakeup=false \
     persist.ts.rtmakeup=false \
